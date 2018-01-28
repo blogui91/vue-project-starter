@@ -1,0 +1,15 @@
+import { EventHandler } from './EventHandler'
+class {model}EventHandler extends EventHandler {
+  constructor () {
+    super()
+    this.listen('{model}:fetched', this.fetched)
+    this.listen('{model}:before-create', this.beforeCreate)
+    this.listen('{model}:created', this.created)
+    this.listen('{model}:before-update', this.beforeUpdate)
+    this.listen('{model}:updated', this.updated)
+    this.listen('{model}:before-destroy', this.beforeDestroy)
+    this.listen('{model}:destroyed', this.destroyed)
+  }
+}
+
+export default {model}EventHandler
