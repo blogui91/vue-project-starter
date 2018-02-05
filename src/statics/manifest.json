@@ -1,0 +1,20 @@
+{
+  "name": "Carzuz Lite",
+  "short_name": "Carzuz-Lite",
+  "icons": [{
+      "src": "/statics/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/statics/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#da291c",
+  "theme_color": "#da291c",
+  "gcm_sender_id": "103953800507"
+}

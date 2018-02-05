@@ -7,6 +7,7 @@ module.exports = {
     src: path.resolve(__dirname, '../src'),
     assets: path.resolve(__dirname, '../src/assets'),
     '@': path.resolve(__dirname, '../src/components'),
+    views: path.resolve(__dirname, '../src/views'),
     variables: path.resolve(__dirname, '../src/themes/quasar.variables.styl')
   },
 
@@ -30,9 +31,38 @@ module.exports = {
     env: require('./dev.env'),
     cssSourceMap: true,
     // auto open browser or not
-    openBrowser: true,
+    openBrowser: false,
     publicPath: '/',
     port: 3000,
+
+    // If for example you are using Quasar Play
+    // to generate a QR code then on each dev (re)compilation
+    // you need to avoid clearing out the console, so set this
+    // to "false", otherwise you can set it to "true" to always
+    // have only the messages regarding your last (re)compilation.
+    clearConsoleOnRebuild: false,
+
+    // Proxy your API if using any.
+    // Also see /build/script.dev.js and search for "proxy api requests"
+    // https://github.com/chimurai/http-proxy-middleware
+    proxyTable: {}
+  },
+  pwa_build: {
+    env: require('./pwa.prod.env'),
+    publicPath: '',
+    productionSourceMap: false,
+
+    // Remove unused CSS
+    // Disable it if it has side-effects for your specific app
+    purifyCSS: true
+  },
+  pwa_dev: {
+    env: require('./pwa.dev.env'),
+    cssSourceMap: true,
+    // auto open browser or not
+    openBrowser: false,
+    publicPath: '/',
+    port: 8080,
 
     // If for example you are using Quasar Play
     // to generate a QR code then on each dev (re)compilation
