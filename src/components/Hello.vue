@@ -1,50 +1,9 @@
 <template>
-  <q-layout
-    ref="layout"
-    view="lHh Lpr fff"
-    :left-class="{'bg-grey-2': true}"
-  >
-    <q-toolbar slot="header" class="glossy">
-      <q-btn
-        flat
-        @click="$refs.layout.toggleLeft()"
-      >
-        <q-icon name="menu" />
-      </q-btn>
-
-      <q-toolbar-title>
-        Quasar App
-        <div slot="subtitle">Running on Quasar v{{$q.version}}</div>
-      </q-toolbar-title>
-    </q-toolbar>
-
-    <div slot="left">
-      <!--
-        Use <q-side-link> component
-        instead of <q-item> for
-        internal vue-router navigation
-      -->
-
-      <q-list no-border link inset-delimiter>
-        <q-list-header>Vue app</q-list-header>
-        <q-item @click="logout">
-          <q-item-side icon="exit_to_app" />
-          <q-item-main label="Log out" sublabel="Close your actual session" />
-        </q-item>
-      </q-list>
-    </div>
-
-    <!--
-      Replace following <div> with
-      <router-view /> component
-      if using subRoutes
-    -->
-    <div class="layout-padding logo-container ">
-        <q-btn type="button" @click="getUser" primary> Get user </q-btn>
-        <h3>Current User</h3>
-        <pre v-text="user" class="bg-black text-white"></pre>
-    </div>
-  </q-layout>
+  <div class="hello-view layout-padding">
+    <h5>Current User</h5>
+    <pre v-text="user" class="bg-black text-white"></pre>
+    <q-btn type="button" @click="getUser" primary> Get user </q-btn>
+  </div>
 </template>
 
 <script>
@@ -54,7 +13,6 @@ import {
   QToolbarTitle,
   QBtn,
   QIcon,
-  Toast,
   QList,
   QListHeader,
   QItem,
@@ -86,26 +44,10 @@ export default {
   },
   computed: {},
   methods: {
-    logout () {
-      let timeout = 1500
-      Toast.create({
-        html: 'Logging out',
-        icon: 'alarm_add',
-        timeout,
-        color: '#fff',
-        bgColor: '#444'
-      })
 
-      setTimeout(() => {
-        // Logout
-        this.$oauth.logout()
-        // Redirect to Login
-        this.$router.replace('/login')
-      }, timeout)
-    },
     async getUser () {
       let response = await User.currentUser()
-      this.user = response
+      this.user = response.data
       this.$event.fire('user:updated', response)
     }
   },
@@ -115,4 +57,9 @@ export default {
 }
 </script>
 
-<style lang='scss'></style>
+<style lang='scss'>
+  .hello-view{
+    height: calc(100vh - 50px);
+    overflow-y: auto;
+  }
+</style>
