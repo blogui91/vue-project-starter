@@ -6,7 +6,7 @@ const actions = {
     state
   }, payload) {
     if (state.currentUser) return state.currentUser
-    let user_promise = User.currentUser() // eslint-disable-line 
+    let user_promise = User.currentUser() // eslint-disable-line
     user_promise
       .then(user => {
         commit('users/setCurrentUser', user, {
@@ -24,13 +24,6 @@ const actions = {
     }, {
       root: true
     })
-  },
-  hasRole ({state}, role = 'admin') {
-    let user
-    if (user = state.currentUser) { //eslint-disable-line
-      return user['is_' + role]
-    }
-    return null
   }
 }
 

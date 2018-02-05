@@ -17,6 +17,7 @@
 </template>
 <script>
 import { QInput, QBtn, QCard, QCardTitle, QCardMain, Toast } from 'quasar'
+import { mapActions } from 'vuex'
 export default {
   data () {
     return {
@@ -44,7 +45,7 @@ export default {
       let password = this.form.password
       try {
         let authentication = await this.$oauth.login(username, password)
-        // This code is not in the medium post but it's cool
+        this.getCurrentUser()
         let redirection = '/' // Default route
         if (this.$route.query.redirect && authentication) {
           // If query has a prop redirect
@@ -59,7 +60,9 @@ export default {
         // Error in Login
         this.loginError()
       }
-    }
+    },
+    ...mapActions('users', ['getCurrentUser', 'destroyCurrentUser'])
+
   },
   components: {
     QInput,
