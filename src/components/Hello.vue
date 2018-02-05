@@ -3,6 +3,7 @@
     <h5>Current User</h5>
     <pre v-text="user" class="bg-black text-white"></pre>
     <q-btn type="button" @click="getUser" primary> Get user </q-btn>
+    <p> {{ status }}</p>
   </div>
 </template>
 
@@ -25,6 +26,26 @@ import Visit from 'src/services/VisitService'
 
 export default {
   name: 'index',
+  data () {
+    return {
+      user: null
+    }
+  },
+  computed: {
+    status () {
+      return this.$store.state.app.status
+    }
+  },
+  methods: {
+    async getUser () {
+      let response = await User.currentUser()
+      this.user = response.data
+      this.$event.fire('user:updated', response)
+    },
+    async mounted () {
+      await Visit.get()
+    }
+  },
   components: {
     QLayout,
     QToolbar,
@@ -36,23 +57,6 @@ export default {
     QItem,
     QItemSide,
     QItemMain
-  },
-  data () {
-    return {
-      user: null
-    }
-  },
-  computed: {},
-  methods: {
-
-    async getUser () {
-      let response = await User.currentUser()
-      this.user = response.data
-      this.$event.fire('user:updated', response)
-    }
-  },
-  async mounted () {
-    await Visit.get()
   }
 }
 </script>
