@@ -3,6 +3,7 @@ import AxiosInterceptor from 'src/interceptors/axios' // eslint-disable-line no-
 import RouterInterceptor from 'src/interceptors/v-router'// eslint-disable-line no-unused-vars
 import { store } from 'src/stores' // store/index.js
 import { EventDispatcher } from 'src/event'
+import Database from 'src/database' // eslint-disable-line
 
 import ServiceProviders from 'providers'
 export default {
