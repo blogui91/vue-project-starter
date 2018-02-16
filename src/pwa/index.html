@@ -25,10 +25,10 @@
   <meta name="theme-color" content="#da291c">
 
   <% for (var chunk of webpack.chunks) {
-        for (var file of chunk.files) {
-          if (file.match(/\.(js|css)$/)) { %>
-    <link rel="<%= chunk.initial?'preload':'prefetch' %>" href="<%= htmlWebpackPlugin.files.publicPath + file %>" as="<%= file.match(/\.css$/)?'style':'script' %>">
-    <% }}} %>
+      for (var file of chunk.files) {
+        if (file.match(/\.(js|css)$/) && file.indexOf('offline_sw') == -1) { %>
+          <link rel="<%= chunk.initial?'preload':'prefetch' %>" href="<%= htmlWebpackPlugin.files.publicPath + file %>" as="<%= file.match(/\.css$/)?'style':'script' %>">
+  <% }}} %>
 </head>
 
 <body>
