@@ -27,9 +27,11 @@ import 'quasar-extras/material-icons'
 // import 'quasar-extras/fontawesome'
 // import 'quasar-extras/animate'
 export const Event = new Vue()
-
 import Bootstrap from './bootstrap'
 Vue.use(Bootstrap)
+window.axios = require('axios')
+import { add } from 'src/services/workers/channels'
+window.add = add
 
 Quasar.start(() => {
   /* eslint-disable no-new */

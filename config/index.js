@@ -3,6 +3,9 @@ var path = require('path')
 module.exports = {
   // Webpack aliases
   aliases: {
+    env: path.resolve(__dirname, '../src/config/env.json'),
+    database : path.resolve(__dirname, '../src/database'),
+    config : path.resolve(__dirname, '../src/config'),
     quasar: path.resolve(__dirname, '../node_modules/quasar-framework/'),
     src: path.resolve(__dirname, '../src'),
     assets: path.resolve(__dirname, '../src/assets'),
